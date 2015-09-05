@@ -2,7 +2,9 @@ package com.sbdavid.www.xishuashua;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,6 +62,19 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_CONTACT_REQUEST);
     }
 
+    public void testFeather(View view)  {
+        try {
+            int sdkInt;
+            sdkInt = Build.VERSION.SDK_INT;
+            TextView textView = (TextView) findViewById(R.id.myTextView);
+            textView.setText(sdkInt + "");
+        }
+        catch (Exception ex) {
+            TextView textView = (TextView) findViewById(R.id.myTextView);
+            textView.setText(ex.getMessage());
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == PICK_CONTACT_REQUEST) {
@@ -68,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 int columnIndex = cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME);
                 String name = cursor.getString(columnIndex);
                 Intent intent = new Intent(this,ShowNameActivity.class);
+
                 intent.putExtra("name", name);
                 startActivity(intent);
             }
