@@ -28,5 +28,11 @@
             android:text="Test Feather"
             android:id="@+id/test_feather"
             android:onClick="testFeather"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="createAlarm"
+            android:onClick="createAlarm"/>
     </LinearLayout>
 </RelativeLayout>

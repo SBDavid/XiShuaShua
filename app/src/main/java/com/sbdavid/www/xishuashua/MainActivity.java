@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Build;
+import android.provider.AlarmClock;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -72,6 +73,19 @@ public class MainActivity extends AppCompatActivity {
         catch (Exception ex) {
             TextView textView = (TextView) findViewById(R.id.myTextView);
             textView.setText(ex.getMessage());
+        }
+    }
+
+    public void createAlarm(View view)  {
+        String message = "createAlarm";
+        int hour = 11;
+        int minutes = 0;
+        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
+                .putExtra(AlarmClock.EXTRA_MESSAGE, message)
+                .putExtra(AlarmClock.EXTRA_HOUR, hour)
+                .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
         }
     }
 
